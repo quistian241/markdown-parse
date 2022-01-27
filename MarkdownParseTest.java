@@ -21,6 +21,31 @@ public class MarkdownParseTest {
     public void testImages() {
         assertEquals(List.of("google.com"), MarkdownParse.getLinks("[](google.com)"));
     }
+    
+    @Test
+    public void testNewLines() {
+        assertEquals(List.of(), MarkdownParse.getLinks("[no link here] \n\n (no text here)"));
+    }
+
+    @Test
+    public void testOnlyBracketts() {
+        assertEquals(List.of(), MarkdownParse.getLinks("[no text here]"));
+    }
+
+    @Test
+    public void testBuchOfMess() {
+        assertEquals(List.of("last line link should be found"), MarkdownParse.getLinks("a ] ] ] ] text! \n [Last line link](last line link should be found)"));
+    }
+
+    @Test
+    public void testEmpty() {
+        assertEquals(List.of(), MarkdownParse.getLinks(""));
+    }
+
+    @Test
+    public void testEmpty() {
+        assertEquals(List.of(), MarkdownParse.getLinks("[a] link!](https://something.com)"));
+    }
 
     @Test
     public void testPrints() {
@@ -29,10 +54,11 @@ public class MarkdownParseTest {
         System.out.println("New test: " + MarkdownParse.getLinks("[a] link!](https://something.com)"));
         System.out.println("New test: " + MarkdownParse.getLinks("a text!"));
         System.out.println("New test: " + MarkdownParse.getLinks("a ] ] ] ] text!"));
+        System.out.println("New test: " + MarkdownParse.getLinks("[no link here] \n\n (no text here)"));
+        System.out.println("New test: " + MarkdownParse.getLinks("[no text here]"));
+        System.out.println("New test: " + MarkdownParse.getLinks("There is only one newline"));
+        System.out.println("New test: " + MarkdownParse.getLinks("a ] ] ] ] text! \n [Last line link](last line link should be found)"));
         System.out.println("New test: " + MarkdownParse.getLinks(""));
-
-
-
-        
+        System.out.println("New test: " + MarkdownParse.getLinks(""));
     }
 }

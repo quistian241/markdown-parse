@@ -43,7 +43,7 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void testEmpty() {
+    public void testNoLink() {
         assertEquals(List.of(), MarkdownParse.getLinks("[a] link!](https://something.com)"));
     }
 

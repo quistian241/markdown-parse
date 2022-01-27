@@ -47,18 +47,15 @@ public class MarkdownParseTest {
         assertEquals(List.of(), MarkdownParse.getLinks("[a] link!](https://something.com)"));
     }
 
+    // @Test 
+    // public void testFile1() {
+    //     System.out.println(MarkdownParse.main("test-file.md", test));
+    // }
+
     @Test
     public void testPrints() {
-        System.out.println();
-        System.out.println("New test: " + MarkdownParse.getLinks("[First line link](first line link should be found)"));
-        System.out.println("New test: " + MarkdownParse.getLinks("[a] link!](https://something.com)"));
-        System.out.println("New test: " + MarkdownParse.getLinks("a text!"));
-        System.out.println("New test: " + MarkdownParse.getLinks("a ] ] ] ] text!"));
-        System.out.println("New test: " + MarkdownParse.getLinks("[no link here] \n\n (no text here)"));
-        System.out.println("New test: " + MarkdownParse.getLinks("[no text here]"));
-        System.out.println("New test: " + MarkdownParse.getLinks("There is only one newline"));
-        System.out.println("New test: " + MarkdownParse.getLinks("a ] ] ] ] text! \n [Last line link](last line link should be found)"));
-        System.out.println("New test: " + MarkdownParse.getLinks(""));
-        System.out.println("New test: " + MarkdownParse.getLinks(""));
+        // System.out.println();
+        // System.out.println("New test: " + MarkdownParse.getLinks(")["));
+        System.out.println("New test: " + MarkdownParse.getLinks("[](a link on the first line)\n["));
     }
 }

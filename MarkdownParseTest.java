@@ -13,10 +13,6 @@ import static org.junit.Assert.*;
 
 public class MarkdownParseTest {
     @Test
-    public void testFailPls() {
-        assertEquals("Should fail", 22, 2 + 2);
-    }
-    @Test
     public void testEmpty() throws IOException {
         assertLinks(List.of(), "testCases/empty.md");
     }

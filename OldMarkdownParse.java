@@ -29,9 +29,6 @@ public class OldMarkdownParse {
                     break;
                 }
             }
-            if (nextCloseBracket == -1) {
-                break;
-            }
             int openParen = markdown.indexOf("(", nextCloseBracket);
             if (openParen == -1 ) {
                 break;

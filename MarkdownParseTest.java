@@ -1,61 +1,70 @@
-// javac -cp ".;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar" MarkdownParseTest.java
-// java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
-import static org.junit.Assert.*;
-import org.junit.*;
+import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 public class MarkdownParseTest {
-    // System.out.println(MarkdownParse.getLinks(""));
-
     @Test
-    public void testCorrectLink() {
-        assertEquals(List.of("https://something.com"), MarkdownParse.getLinks("[a link!](https://something.com)"));
+    public void testEmpty() throws IOException {
+        assertLinks(List.of(), "testCases/empty.md");
     }
 
     @Test
-    public void testExtraSpace() {
-        assertEquals(List.of(), MarkdownParse.getLinks("[fake link]extra space here(not a real link)"));
+    public void testExtraSpace() throws IOException {
+        assertLinks(List.of(), "testCases/extraSpace.md");
     }
 
     @Test
-    public void testImages() {
-        assertEquals(List.of("google.com"), MarkdownParse.getLinks("[](google.com)"));
-    }
-    
-    @Test
-    public void testNewLines() {
-        assertEquals(List.of(), MarkdownParse.getLinks("[no link here] \n\n (no text here)"));
+    public void testEscape() throws IOException {
+        assertLinks(List.of("https://somethingelse.com"), "testCases/escape.md");
     }
 
     @Test
-    public void testOnlyBracketts() {
-        assertEquals(List.of(), MarkdownParse.getLinks("[no text here]"));
+    public void testJustEscape() throws IOException {
+        assertLinks(List.of(), "testCases/justEscape.md");
     }
 
     @Test
-    public void testBuchOfMess() {
-        assertEquals(List.of("last line link should be found"), MarkdownParse.getLinks("a ] ] ] ] text! \n [Last line link](last line link should be found)"));
+    public void testImage() throws IOException {
+        assertLinks(List.of(), "testCases/image.md");
     }
 
     @Test
-    public void testEmpty() {
-        assertEquals(List.of(), MarkdownParse.getLinks(""));
+    public void testJustBrackets() throws IOException {
+        assertLinks(List.of(), "testCases/justBrackets.md");
     }
 
     @Test
-    public void testNoLink() {
-        assertEquals(List.of(), MarkdownParse.getLinks("[a] link!](https://something.com)"));
+    public void testJustParentheses() throws IOException {
+        assertLinks(List.of(), "testCases/justParentheses.md");
     }
 
-    // @Test 
-    // public void testFile1() {
-    //     System.out.println(MarkdownParse.main("test-file.md", test));
-    // }
+    @Test
+    public void testMultiline() throws IOException {
+        assertLinks(List.of("https://isthisfound.com"), "testCases/multiline.md");
+    }
 
     @Test
-    public void testPrints() {
-        // System.out.println();
-        // System.out.println("New test: " + MarkdownParse.getLinks(")["));
-        System.out.println("New test: " + MarkdownParse.getLinks("[](a link on the first line)\n["));
+    public void testLastLine() throws IOException {
+        assertLinks(List.of("last line link should be found"), "testCases/lastLine.md");
+    }
+
+    @Test
+    public void testEndStartParentheses() throws IOException {
+        assertLinks(List.of(), "testCases/endStartParentheses.md");
+    }
+
+    public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {
+        Path filePath = Path.of(fileName);
+        String contents = Files.readString(filePath);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+
+        assertEquals(expectedLinks, links);
     }
 }

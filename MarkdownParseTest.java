@@ -1,3 +1,5 @@
+// javac -cp ".;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar" MarkdownParseTest.java
+// java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
@@ -10,6 +12,10 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class MarkdownParseTest {
+    @Test
+    public void testFailPls() {
+        assertEquals("Should fail", 22, 2 + 2);
+    }
     @Test
     public void testEmpty() throws IOException {
         assertLinks(List.of(), "testCases/empty.md");

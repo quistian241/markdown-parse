@@ -13,6 +13,12 @@ import static org.junit.Assert.*;
 
 public class MarkdownParseTest {
     @Test
+    public void addition() {
+        assertEquals(3, 1 + 1);
+    }
+
+    public void 
+    @Test
     public void testEmpty() throws IOException {
         assertLinks(List.of(), "testCases/empty.md");
     }

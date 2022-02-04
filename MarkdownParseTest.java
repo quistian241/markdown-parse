@@ -17,7 +17,6 @@ public class MarkdownParseTest {
         assertEquals(3, 1 + 1);
     }
 
-    public void 
     @Test
     public void testEmpty() throws IOException {
         assertLinks(List.of(), "testCases/empty.md");

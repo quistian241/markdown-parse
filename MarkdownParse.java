@@ -11,7 +11,7 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-        while(currentIndex <= markdown.length()) {
+        while (currentIndex <= markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             if (nextOpenBracket == -1) {
                 break;
@@ -23,7 +23,7 @@ public class MarkdownParse {
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             if (nextCloseBracket == -1) {
                 break;
-            } 
+            }
             while (markdown.charAt(nextCloseBracket - 1) == '\\' && markdown.charAt(nextCloseBracket - 2) != '\\') {
                 nextCloseBracket = markdown.indexOf("]", nextCloseBracket + 1);
                 if (nextCloseBracket == -1) {
@@ -31,12 +31,12 @@ public class MarkdownParse {
                 }
             }
             int openParen = markdown.indexOf("(", nextCloseBracket);
-            if (openParen == -1 ) {
+            if (openParen == -1) {
                 break;
-            } 
+            }
             int lineBreak = markdown.indexOf("\n", openParen);
             int closeParen = markdown.indexOf(")", openParen);
-            
+
             if (lineBreak != -1 && lineBreak < closeParen) {
                 currentIndex = closeParen + 1;
                 continue;
@@ -48,9 +48,10 @@ public class MarkdownParse {
         }
         return toReturn;
     }
+
     public static void main(String[] args) throws IOException {
-		Path fileName = Path.of(args[0]);
-	    String contents = Files.readString(fileName);
+        Path fileName = Path.of(args[0]);
+        String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
     }

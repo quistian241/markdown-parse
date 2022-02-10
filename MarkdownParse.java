@@ -37,7 +37,7 @@ public class MarkdownParse {
             int lineBreak = markdown.indexOf("\n", openParen);
             int closeParen = markdown.indexOf(")", openParen);
 
-            if (lineBreak != -1 && lineBreak =< closeParen) {
+            if (lineBreak != -1 && lineBreak <= closeParen) {
                 currentIndex = closeParen + 1;
                 continue;
             }

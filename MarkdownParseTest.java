@@ -74,6 +74,10 @@ public class MarkdownParseTest {
     //     List<String> expect = List.of("space-in-url.com");
     //     assertEquals(expect, MarkdownParse.getLinks(contents));
     // }
+
+    // stop at MarkdownParseTest.testSnippet1
+    // stop at MarkdownParseTest.testSnippet2
+    // stop at MarkdownParseTest.testSnippet3
     
     @Test
     public void testSnippet1() throws IOException {

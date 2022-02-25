@@ -13,5 +13,5 @@ snip1: MarkdownParse.class
 snip2: MarkdownParse.class
 	jdb MarkdownParse snippet-2.md
 
-snip2: MarkdownParse.class
+snip3: MarkdownParse.class
 	jdb MarkdownParse snippet-3.md

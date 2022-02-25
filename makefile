@@ -1,7 +1,7 @@
 CLASSPATH = lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:.
 
 MarkdownParse.class: MarkdownParse.java 
-	javac -g -cp $(CLASSPATH) MarkdownParse.java 
+	javac -g MarkdownParse.java 
 
 MarkdownParseTest.class: MarkdownParse.class MarkdownParseTest.java 
 	javac -g -cp $(CLASSPATH) MarkdownParseTest.java

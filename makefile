@@ -1,11 +1,16 @@
+CLASSPATH = lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:.
+
 MarkdownParse.class: MarkdownParse.java 
-	javac -g -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParse.java 
+	javac -g -cp $(CLASSPATH) MarkdownParse.java 
 
 MarkdownParseTest.class: MarkdownParse.class MarkdownParseTest.java 
-	javac -g -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParseTest.java
+	javac -g -cp $(CLASSPATH) MarkdownParseTest.java
 
 test: MarkdownParse.class MarkdownParseTest.class
-	java -g -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. org.junit.runner.JUnitCore MarkdownParseTest
+	java -cp $(CLASSPATH) org.junit.runner.JUnitCore MarkdownParseTest
+
+debug: MarkdownParse.class MarkdownParseTest.class
+	jdb -classpath $(CLASSPATH) org.junit.runner.JUnitCore MarkdownParseTest
 
 snip1: MarkdownParse.class
 	jdb MarkdownParse snippet-1.md

@@ -10,7 +10,7 @@ test: MarkdownParse.class MarkdownParseTest.class
 	java -cp $(CLASSPATH) org.junit.runner.JUnitCore MarkdownParseTest
 
 debug: MarkdownParseTest.class
-	jdb -g -classpath $(CLASSPATH) org.junit.runner.JUnitCore MarkdownParseTest
+	jdb -classpath $(CLASSPATH) org.junit.runner.JUnitCore MarkdownParseTest
 
 snip1: MarkdownParse.class
 	jdb MarkdownParse snippet-1.md

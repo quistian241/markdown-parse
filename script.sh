@@ -1,5 +1,6 @@
 
 for file in test-files/*.md;
 do
-  java MarkdownParse $file 
+  echo -n -e  "${file##*/}\t"
+  java MarkdownParse $file
 done

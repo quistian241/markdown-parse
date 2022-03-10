@@ -11,7 +11,7 @@ class TryCommonMark {
     }
 }
 
-# this part actually does the computation
+// this part actually does the computation
 Node node = parser.parse("Example\n=======\n\nSome more text");
 WordCountVisitor visitor = new WordCountVisitor();
 node.accept(visitor);

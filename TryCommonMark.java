@@ -14,14 +14,14 @@ class TryCommonMark {
         WordCountVisitor visitor = new WordCountVisitor();
         node.accept(visitor);
         visitor.wordCount;  // 4
-
-    // this class can be defined anywhere in the file
-    class WordCountVisitor extends AbstractVisitor {
-        int wordCount = 0;
     }
 }
 
-@Override
+// this class can be defined anywhere in the file
+class WordCountVisitor extends AbstractVisitor {
+    int wordCount = 0;
+
+    @Override
     public void visit(Text text) {
         // This is called for all Text nodes. Override other visit methods for other node types.
 

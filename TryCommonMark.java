@@ -17,7 +17,7 @@ WordCountVisitor visitor = new WordCountVisitor();
 node.accept(visitor);
 visitor.wordCount;  // 4
 
-# this class can be defined anywhere in the file
+// this class can be defined anywhere in the file
 class WordCountVisitor extends AbstractVisitor {
     int wordCount = 0;
 
